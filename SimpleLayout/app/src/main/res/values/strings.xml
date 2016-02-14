@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SimpleLayout</string>
+    <string name="blueText">blue</string>
+    <string name="redText">red</string>
+    <string name="whiteText">white</string>
+    <string name="resetText">Reset</string>
+    <string name="messageText">Current color is</string>
+</resources>
