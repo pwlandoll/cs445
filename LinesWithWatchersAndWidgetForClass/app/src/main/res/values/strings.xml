@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">LinesWithWatchersAndWidget</string>
+    <string name="Title">Line Input</string>
+    <string name="StartX">X1</string>
+    <string name="StartY">Y1</string>
+    <string name="EndX">X2</string>
+    <string name="EndY">Y2</string>
+    <string name="Slope">Slope:</string>
+    <string name="Intercept">Y-Intercept:</string>
+    <string name="UperPrompt">Input X:</string>
+    <string name="FunctionValueY">Resulting Y:</string>
+    <string name="FunctionValueX">Input X:</string>
+</resources>

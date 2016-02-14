@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ListenerExample2-3</string>
+    <string name="prompt">Age of Cat in Years</string>
+    <string name="Zero">0</string>
+    <string name="OutputMessage">Age in Human Years</string>
+    <string name="Error">Incorrect Input for Age?</string>
+</resources>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Homework2</string>
+    <string name="chooseAColor">Choose a Color:</string>
+    <string name="resetText">Reset</string>
+    <string name="X">X</string>
+    <string name="O">O</string>
+    <string name="all">All</string>
+</resources>
