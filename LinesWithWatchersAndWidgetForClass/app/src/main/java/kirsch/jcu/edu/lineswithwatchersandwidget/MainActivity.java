@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity  {
     private EditText x1, y1, x2, y2;
     private TextView slope, yIntercept, seekBarInput, resultY;
     private SeekBar xValues;
+    // Hax?
+    private Integer minValue=0, maxValue=100, initialValue=-100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,9 @@ public class MainActivity extends AppCompatActivity  {
         y1.addTextChangedListener(inputListener);
         y2.addTextChangedListener(inputListener);
         xValues.setOnSeekBarChangeListener(changeXListener);
+
+        seekBarInput.setText(initialValue.toString());
+        xValues.setProgress(minValue);
     }
 
 
@@ -66,9 +71,22 @@ public class MainActivity extends AppCompatActivity  {
                 theLine.setStartY(Double.parseDouble(y1.getText().toString()));
                 theLine.setEndX(Double.parseDouble(x2.getText().toString()));
                 theLine.setEndY(Double.parseDouble(y2.getText().toString()));
+                Double currentSlope = theLine.getMySlope();
+                if (currentSlope != null) {
+                    slope.setText(theLine.getMySlope().toString());
+                    yIntercept.setText(theLine.getMyIntercept().toString());
+                } else {
+                    slope.setText(getResources().getString(R.string.Undefined));
+                    yIntercept.setText("");
+                }
+
             } catch (NumberFormatException e) {
 
             }
+            // Hax? to force the seekbar to update
+            seekBarInput.setText(initialValue.toString());
+            xValues.setProgress(maxValue);
+            xValues.setProgress(minValue);
         }
 
         @Override
@@ -81,9 +99,9 @@ public class MainActivity extends AppCompatActivity  {
     private SeekBar.OnSeekBarChangeListener changeXListener = new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            int xValue = progress - 100;
+            Integer xValue = progress - 100;
             Double yValue = theLine.getResult(xValue);
-            seekBarInput.setText(xValue);
+            seekBarInput.setText(xValue.toString());
             if (yValue != null) {
                 resultY.setText(yValue.toString());
             }
