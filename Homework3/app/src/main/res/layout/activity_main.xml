@@ -67,8 +67,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/widthMinTextView"
-                    android:text="50" />
+                    android:id="@+id/widthMinTextView" />
 
                 <SeekBar
                     android:layout_width="wrap_content"
@@ -79,7 +78,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="400"
                     android:id="@+id/widthMaxTextView" />
             </LinearLayout>
 
@@ -99,8 +97,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/heightMinTextView"
-                    android:text="50" />
+                    android:id="@+id/heightMinTextView" />
 
                 <SeekBar
                     android:layout_width="wrap_content"
@@ -111,7 +108,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="400"
                     android:id="@+id/heightMaxTextView" />
             </LinearLayout>
         </LinearLayout>
