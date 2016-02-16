@@ -10,12 +10,28 @@
     tools:context="edu.jcu.plandoll16.homework3.MainActivity">
 
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentEnd="false"
+        android:layout_above="@+id/bottomLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/colorBox"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="false"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bottomLayout">
 
         <RadioGroup
             android:layout_width="wrap_content"
@@ -30,19 +46,22 @@
                 android:layout_height="wrap_content"
                 android:text="@string/red"
                 android:id="@+id/redRadioButton"
-                android:checked="true" />
+                android:checked="true"
+                android:textColor="@color/red" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/green"
-                android:id="@+id/greenRadioButton" />
+                android:id="@+id/greenRadioButton"
+                android:textColor="@color/green" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/blue"
-                android:id="@+id/blueRadioButton" />
+                android:id="@+id/blueRadioButton"
+                android:textColor="@color/blue" />
         </RadioGroup>
 
         <LinearLayout
@@ -112,12 +131,5 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/colorBox"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

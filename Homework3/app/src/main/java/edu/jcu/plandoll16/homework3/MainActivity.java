@@ -2,7 +2,6 @@ package edu.jcu.plandoll16.homework3;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -39,18 +38,19 @@ public class MainActivity extends AppCompatActivity {
         buttonGroup = (RadioGroup)findViewById(R.id.radioGroup);
         buttonGroup.setOnCheckedChangeListener(checkedListener);
         updateColors(buttonGroup.getCheckedRadioButtonId());
-        // Set the seek bars, connect the listeners
+        // Set the seek bars, set progress to 0 (i.e. the min), connect the listeners
         widthBar = (SeekBar)findViewById(R.id.widthSeekBar);
         widthBar.setMax(widthMax);
-        widthBar.setProgress(widthMin);
+        widthBar.setProgress(0);
         widthBar.setOnSeekBarChangeListener(widthListener);
         heightBar = (SeekBar)findViewById(R.id.heightSeekBar);
         heightBar.setMax(heightMax);
-        heightBar.setProgress(heightMin);
+        heightBar.setProgress(0);
         heightBar.setOnSeekBarChangeListener(heightListener);
     }
 
     private void updateColors(int checked) {
+        // Set the color of the color box to the color matching the button
         if (checked == R.id.redRadioButton) {
             colorBox.setBackgroundColor(getResources().getColor(R.color.red));
         } else if (checked == R.id.greenRadioButton) {
