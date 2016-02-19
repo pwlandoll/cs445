@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         textSize = (RadioGroup)findViewById(R.id.buttonGroup);
         message = (TextView)findViewById(R.id.textView);
-
+        message.setTextSize(getResources().getDimension(R.dimen.smallText));
         textSize.setOnCheckedChangeListener(sizeListener);
     }
 
