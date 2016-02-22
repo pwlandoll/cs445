@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">AdapterForListView</string>
+    <string name="prompt">Add Item To Do</string>
+</resources>
