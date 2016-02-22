@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Quiz3</string>
+    <string name="Prompt">Enter A Guess Between 1 and 100. Use 0 to start over.</string>
+    <string name="success">Good Guess!</string>
+</resources>
