@@ -9,26 +9,41 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.jcu.plandoll16.adapterforlistview.MainActivity">
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/prompt"
-        android:id="@+id/promptTextView"
+        android:id="@+id/promptEditText"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <Space
         android:layout_width="20px"
         android:layout_height="40px"
-        android:layout_below="@+id/promptTextView"
+        android:layout_below="@+id/promptEditText"
         android:layout_centerHorizontal="true"
         android:id="@+id/space" />
+
+    <!-- <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_below="@+id/space"
+        android:layout_alignEnd="@+id/space" /> -->
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/toDoListView"
+        android:id="@+id/leftToDo"
         android:layout_below="@+id/space"
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/space" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rightToDo"
+        android:layout_below="@+id/space"
+        android:layout_toEndOf="@+id/leftToDo" />
+
 </RelativeLayout>
