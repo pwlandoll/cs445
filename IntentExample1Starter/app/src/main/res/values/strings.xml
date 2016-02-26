@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Intent_Example</string>
+    <string name="action_settings">Settings</string>
+    <string name="main_actitivy_text">This is the Main Activity</string>
+    <string name="alternate_activity_text">This is the Alternative Activity</string>
+    <string name="main_activity_button">Go to the Alternate Activity</string>
+    <string name="alternate_activity_button">Go To the Main Activity</string>
+</resources>
+
