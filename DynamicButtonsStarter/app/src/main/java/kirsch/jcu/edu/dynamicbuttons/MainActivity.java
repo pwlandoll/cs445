@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void initialize(View view) {
         try {
-            rows = Integer.parseInt(numberOfRows.toString());
-            columns = Integer.parseInt(numberOfColumns.toString());
+            rows = Integer.parseInt(numberOfRows.getText().toString());
+            columns = Integer.parseInt(numberOfColumns.getText().toString());
         } catch (Exception e) {
             // If there's an error, default to 2
             rows = 2;
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             numberOfRows.setText(rows.toString());
             numberOfColumns.setText(columns.toString());
         }
+        buttons = new Button[rows][columns];
         int padding = 5; // padding in px
         Integer screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenWidth -= (int)(2*getResources().getDimension(R.dimen.activity_horizontal_margin));
@@ -52,13 +53,27 @@ public class MainActivity extends AppCompatActivity {
             TableRow newRow = new TableRow(this);
             newRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             newRow.setBackgroundColor(getResources().getColor(R.color.white));
+            String name;
             // Create columns buttons for this row
             for (int col = 0; col < columns; col++) {
-                Button addButton = new Button(this);
-                addButton.setOnClickListener(buttonListener);
+                //Button addButton = new Button(this);
+                name = "(" + row + ", " + col + ")";
+                MyButton addButton = new MyButton(this, name);
+                //addButton.setOnClickListener(buttonListener);
+                addButton.setOnClickListener(new Button.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        MyButton picked = (MyButton)view;
+                        picked.setTextColor(getResources().getColor(R.color.white));
+                        picked.setBackgroundColor(getResources().getColor(R.color.blue));
+                        String message = getResources().getText(R.string.Hit) + picked.getName();
+                        picked.setText(message);
+                    }
+                });
                 addButton.setTextSize(10);
                 addButton.setBackgroundColor(getResources().getColor(R.color.background));
                 addButton.setTextColor(getResources().getColor(R.color.white));
+                addButton.setLayoutParams(buttonParameters);
                 newRow.addView(addButton);
                 buttons[row][col] = addButton;
             }
@@ -66,12 +81,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private Button.OnClickListener buttonListener = new Button.OnClickListener() {
+    /* private Button.OnClickListener buttonListener = new Button.OnClickListener() {
         @Override
         public void onClick(View view) {
-            initialize(view);
             Button picked = (Button)view;
-            int theRow =0, theCol = 0;
+            int theRow = 0, theCol = 0;
             for (int row = 0; row < rows; row++) {
                 for (int col = 0; col < columns; col++) {
                     if (picked.equals(buttons[row][col])) {
@@ -80,10 +94,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
-            picked.setTextColor(getResources().getColor(R.color.blue));
+            picked.setTextColor(getResources().getColor(R.color.white));
+            picked.setBackgroundColor(getResources().getColor(R.color.blue));
             String message = getResources().getText(R.string.Hit) + "(" + theRow + "," + theCol + ")";
             picked.setText(message);
         }
-    };
+    }; */
 
 }
