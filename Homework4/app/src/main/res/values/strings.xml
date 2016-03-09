@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Homework4</string>
+    <string name="generate">Generate Numbers</string>
+    <string name="defaultMin">0</string>
+    <string name="defaultMax">100</string>
+</resources>
