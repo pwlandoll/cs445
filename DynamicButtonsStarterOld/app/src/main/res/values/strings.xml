@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DynamicButtons</string>
+    <string name="Prompt">Enter the number of rows and columns</string>
+    <string name="RowHint">Rows</string>
+    <string name="ColumnHint">Columns</string>
+    <string name="Hit">Hit</string>
+</resources>

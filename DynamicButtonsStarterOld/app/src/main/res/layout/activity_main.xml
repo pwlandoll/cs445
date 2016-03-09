@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="kirsch.jcu.edu.dynamicbuttons.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_column="2"
+        android:textSize="@dimen/abc_text_size_medium_material"
+        android:text="@string/Prompt" />
+
+    <EditText
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:id="@+id/rowEditText"
+        android:layout_below="@id/textView"
+        android:textSize="@dimen/abc_text_size_large_material"
+        android:hint="@string/RowHint"
+        android:inputType="number" />
+
+    <EditText
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:id="@+id/colEditText"
+        android:layout_below="@id/textView"
+        android:layout_toRightOf="@id/rowEditText"
+        android:textSize="@dimen/abc_text_size_large_material"
+        android:hint="@string/ColumnHint"
+        android:inputType="number" />
+    <Space
+        android:layout_width="20px"
+        android:layout_height="20px"
+        android:layout_below="@id/rowEditText"
+        android:id="@+id/space" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/space"
+        android:text="Create Buttons"
+        android:id="@+id/createButton"
+        android:layout_centerHorizontal="true"
+        android:onClick="initialize" />
+
+    <Space
+        android:layout_width="20px"
+        android:layout_height="20px"
+        android:layout_below="@+id/createButton"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/space2" />
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/space2"
+        android:layout_alignParentStart="true"
+        android:id="@+id/buttonHolderTableLayout"></TableLayout>
+
+
+</RelativeLayout>
