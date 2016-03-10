@@ -45,11 +45,8 @@ public class MainActivity extends AppCompatActivity {
         // Set defaults for min, max, threshold, numberSeekBar
         minEditText.setText(getResources().getString(R.string.defaultMin));
         maxEditText.setText(getResources().getString(R.string.defaultMax));
+        threshold = -1; //allows for updateMinAndMax() to set the threshold based on defaults for min, max
         updateMinAndMax();
-        threshold = (max-min)/2;
-        numberSeekBar.setMax(max - min);
-        numberSeekBar.setProgress(threshold);
-        barTextView.setText(threshold.toString());
 
         // Create/set adapters for arrays
         topArray = new ArrayList<Integer>();
@@ -90,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
             maxText = Integer.parseInt(maxEditText.getText().toString());
         } catch (Exception e) {
             // Set 0, 100 as default values
-            minText = 105; //debug
-            maxText = 110;
+            minText = 0;
+            maxText = 100;
         }
         if (minText <= maxText) {
             min = minText;
@@ -100,6 +97,21 @@ public class MainActivity extends AppCompatActivity {
             min = maxText;
             max = minText;
         }
+        numberSeekBar.setMax(max - min);
+        if (threshold > max || threshold < min) {
+            threshold = (max-min) / 2;
+        }
+        numberSeekBar.setProgress(threshold);
+        barTextView.setText(threshold.toString());
+    }
+
+    private void clearAll() {
+        topAdapter.clear();
+        leftAdapter.clear();
+        rightAdapter.clear();
+        topAdapter.notifyDataSetChanged();
+        leftAdapter.notifyDataSetChanged();
+        rightAdapter.notifyDataSetChanged();
     }
 
     private AdapterView.OnItemClickListener topListViewListener = new AdapterView.OnItemClickListener() {
@@ -129,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             updateMinAndMax();
+            clearAll();
         }
 
         @Override
@@ -148,12 +161,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
             // Clear the topArray and topListView
-            topAdapter.clear();
-            leftAdapter.clear();
-            rightAdapter.clear();
-            topAdapter.notifyDataSetChanged();
-            leftAdapter.notifyDataSetChanged();
-            rightAdapter.notifyDataSetChanged();
+            clearAll();
         }
 
         @Override
