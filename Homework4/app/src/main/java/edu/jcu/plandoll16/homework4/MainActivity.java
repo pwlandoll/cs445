@@ -19,13 +19,12 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     // Instance variables corresponding to resources
     private EditText minEditText, maxEditText;
-    private Button generateButton;
     private SeekBar numberSeekBar;
     private TextView barTextView;
     private ListView topListView, rightListView, leftListView;
     // Other instance variables
-    private int min, max, threshold;
-    private Integer minText, maxText;
+    private int min, max;
+    private Integer minText, maxText, threshold;
     private ArrayList<Integer> topArray, rightArray, leftArray;
     private ArrayAdapter<Integer> topAdapter, rightAdapter, leftAdapter;
 
@@ -37,18 +36,20 @@ public class MainActivity extends AppCompatActivity {
         // Associate instance variables with resources
         minEditText = (EditText)findViewById(R.id.minEditText);
         maxEditText = (EditText)findViewById(R.id.maxEditText);
-        generateButton = (Button)findViewById(R.id.generateButton);
         numberSeekBar = (SeekBar)findViewById(R.id.numberSeekBar);
         barTextView = (TextView)findViewById(R.id.barTextView);
         topListView = (ListView)findViewById(R.id.topListView);
         rightListView = (ListView)findViewById(R.id.rightListView);
         leftListView = (ListView)findViewById(R.id.leftListView);
+
         // Set defaults for min, max, threshold, numberSeekBar
         minEditText.setText(getResources().getString(R.string.defaultMin));
         maxEditText.setText(getResources().getString(R.string.defaultMax));
         updateMinAndMax();
-
-        // Instantiate other instance variables
+        threshold = (max-min)/2;
+        numberSeekBar.setMax(max - min);
+        numberSeekBar.setProgress(threshold);
+        barTextView.setText(threshold.toString());
 
         // Create/set adapters for arrays
         topArray = new ArrayList<Integer>();
@@ -63,14 +64,24 @@ public class MainActivity extends AppCompatActivity {
 
         topListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         topListView.setOnItemClickListener(topListViewListener);
+
+        // Connect listeners
+        minEditText.addTextChangedListener(editTextWatcher);
+        maxEditText.addTextChangedListener(editTextWatcher);
+        numberSeekBar.setOnSeekBarChangeListener(numberSeekBarListener);
     }
 
-    private void generateNumbers() {
+    public void generateNumbers(View view) {
         Random r = new Random();
         topAdapter.clear();
+        leftAdapter.clear();
+        rightAdapter.clear();
         for (int i = 0; i < 6; i++) {
             topAdapter.add(r.nextInt(max-min) + min);
         }
+        topAdapter.notifyDataSetChanged();
+        leftAdapter.notifyDataSetChanged();
+        rightAdapter.notifyDataSetChanged();
     }
 
     private void updateMinAndMax() {
@@ -79,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
             maxText = Integer.parseInt(maxEditText.getText().toString());
         } catch (Exception e) {
             // Set 0, 100 as default values
-            minText = 0;
-            maxText = 100;
+            minText = 105; //debug
+            maxText = 110;
         }
         if (minText <= maxText) {
             min = minText;
@@ -117,13 +128,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            // Use afterTextChanged() to prevent errors with unfinished input
+            updateMinAndMax();
         }
 
         @Override
         public void afterTextChanged(Editable s) {
-            // Update max and min
-            updateMinAndMax();
+
         }
     };
 
@@ -132,13 +142,18 @@ public class MainActivity extends AppCompatActivity {
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             // Update the threshold
             threshold = min + progress;
+            barTextView.setText(threshold.toString());
         }
 
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
             // Clear the topArray and topListView
             topAdapter.clear();
+            leftAdapter.clear();
+            rightAdapter.clear();
             topAdapter.notifyDataSetChanged();
+            leftAdapter.notifyDataSetChanged();
+            rightAdapter.notifyDataSetChanged();
         }
 
         @Override
