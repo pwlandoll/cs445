@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LifeCycleExample</string>
+    <string name="create">The activity has been created - onCreate()</string>
+    <string name="start">The activity has been launched - onStart()</string>
+    <string name="resume">The activity is in the foreground and running - onResume()</string>
+    <string name="pause">Another activity is in front of this activity - onPause()</string>
+    <string name="stop">The activity is no longer visible on the screen - onStop()</string>
+    <string name="restart">The activity is restarting after being stopped - onRestart()</string>
+</resources>
