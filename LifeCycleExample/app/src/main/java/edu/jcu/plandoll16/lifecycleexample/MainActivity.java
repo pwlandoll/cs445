@@ -20,7 +20,41 @@ public class MainActivity extends AppCompatActivity {
         initialize();
         myAdapter.add(createMessage);
         myAdapter.notifyDataSetChanged();
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        myAdapter.add(pauseMessage);
+        myAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        myAdapter.add(resumeMessage);
+        myAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        myAdapter.add(startMessage);
+        myAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        myAdapter.add(stopMessage);
+        myAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        myAdapter.add(restartMessage);
+        myAdapter.notifyDataSetChanged();
     }
 
     private void initialize() {
