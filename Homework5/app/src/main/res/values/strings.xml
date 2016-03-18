@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Homework 5</string>
+    <string name="Prompt">Enter the number of rows and columns</string>
+    <string name="RowHint">Rows</string>
+    <string name="ColumnHint">Columns</string>
+    <string name="create">Create Buttons</string>
+</resources>
