@@ -14,7 +14,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick(View view){
         Intent alternateIntent = new Intent(view.getContext(),AlternateActivity.class);
-        startActivityForResult(alternateIntent, 0);
+        startActivity(alternateIntent);
+        //startActivityForResult(alternateIntent, 0);
+        //finish();
     }
 
 }
