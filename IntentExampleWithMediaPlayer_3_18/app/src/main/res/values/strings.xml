@@ -1,0 +1,13 @@
+<resources>
+
+    <string name="app_name">Intent Example With Random Selection</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_get_image">Get Image Activity</string>
+    <string name="select_image">Select an Image</string>
+    <string name="random">Randomly Select an Image</string>
+    <string name="success">Simulating Random Selection or Error</string>
+    <string name="error">Error with GetImageActivity - try again later</string>
+    <string name="unknown">Unknown Activity</string>
+    <string name="start">Start Media Player Service</string>
+    <string name="stop">Stop Media Player Service</string>
+</resources>

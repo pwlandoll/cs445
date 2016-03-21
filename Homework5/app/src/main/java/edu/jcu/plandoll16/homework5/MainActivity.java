@@ -5,14 +5,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private Button[][] buttons;
     private EditText numberOfRows, numberOfColumns;
     private int padding;
-    private Integer rows, columns, screenWidth, screenHeight;
+    private Integer screenWidth, screenHeight;
+    private SpecialButton[][] buttons;
+    private TextView bottomView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         numberOfRows = (EditText)findViewById(R.id.rowEditText);
         numberOfColumns = (EditText)findViewById(R.id.colEditText);
+
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
         screenWidth -= (int)(2*getResources().getDimension(R.dimen.activity_horizontal_margin));
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initialize(View view) {
+        Integer rows, columns;
         try {
             rows = Integer.parseInt(numberOfRows.getText().toString());
             columns = Integer.parseInt(numberOfColumns.getText().toString());
@@ -39,45 +44,46 @@ public class MainActivity extends AppCompatActivity {
             numberOfRows.setText(rows.toString());
             numberOfColumns.setText(columns.toString());
         }
-        buttons = new Button[rows][columns];
-        Integer buttonSize = Math.min(screenHeight, screenWidth);
+        Integer buttonSize = (Math.min(screenHeight, screenWidth)) / (rows + 1)- 2 * padding;
         TableLayout holder = (TableLayout)findViewById(R.id.buttonHolderTableLayout);
         holder.removeAllViews();
         TableRow.LayoutParams buttonParameters = new TableRow.LayoutParams(buttonSize, buttonSize);
         buttonParameters.setMargins(padding, padding, padding, padding);
-
+        buttons = new SpecialButton[rows][columns];
         for (int row = 0; row < rows; row++) {
             TableRow newRow = new TableRow(this);
             newRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             newRow.setBackgroundColor(getResources().getColor(R.color.white));
-            double type;
-            //String name;
             // Create columns buttons for this row
             for (int col = 0; col < columns; col++) {
-                //Button addButton = new Button(this);
-                //name = "(" + row + ", " + col + ")";
-                type = Math.random();
-                Button addButton;
-                if (type < 0.5) {
-                    addButton = new RedBlueButton(this);
+                SpecialButton addButton;
+                if (Math.random() < 0.5) {
+                    addButton = new RedBlueButton(this, buttonSize);
                 } else {
-                    addButton = new YellowGreenButton(this);
+                    addButton = new YellowGreenButton(this, buttonSize);
                 }
                 addButton.setOnClickListener(new Button.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Button picked = (Button)view;
+                        SpecialButton picked = (SpecialButton)view;
+                        picked.switchColor();
                     }
                 });
-                addButton.setTextSize(10);
-                //addButton.setBackgroundColor(getResources().getColor(R.color.background));
-                addButton.setTextColor(getResources().getColor(R.color.white));
+                addButton.setBackgroundColor(getResources().getColor(R.color.grey));
                 addButton.setLayoutParams(buttonParameters);
                 newRow.addView(addButton);
-                buttons[row][col] = addButton;
             }
             holder.addView(newRow);
         }
-
+        TableRow bottomRow = new TableRow(this);
+        bottomRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+        bottomRow.setBackgroundColor(getResources().getColor(R.color.white));
+        TextView bottomTextView = new TextView(this);
+        bottomTextView.setBackgroundColor(getResources().getColor(R.color.grey));
+        bottomTextView.setHeight(buttonSize);
+        bottomTextView.setWidth(buttonSize);
+        bottomTextView.setId(R.id.bottomView);
+        bottomRow.addView(bottomTextView);
+        holder.addView(bottomRow);
     }
 }
