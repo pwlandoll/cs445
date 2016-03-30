@@ -19,6 +19,10 @@
             android:name="edu.jcu.kirsch.intentexample1.AlternateActivity"
             android:label="@string/alternate_activity_text" >
         </activity>
+        <receiver
+            android:name=".TimerBroadcastReceiver"
+            android:enabled="true">
+        </receiver>
     </application>
 
 </manifest>

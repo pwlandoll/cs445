@@ -64,7 +64,8 @@
         android:text="@string/timer_button"
         android:id="@+id/timerButton"
         android:layout_below="@+id/space3"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="setTimerClick" />
 
 </RelativeLayout>
 
