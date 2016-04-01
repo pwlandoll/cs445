@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<Integer> listAdapter;
     private ArrayList<Integer> numberArrayList;
     private EditText minEditText, maxEditText;
-    private Integer min, max, minAllowed, maxAllowed, minText, maxText;
+    private Integer min, max, minAllowed, maxAllowed, minText, maxText, listMin, listMax, listMean;
     private ListView numberListView;
 
     @Override
@@ -33,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
         // Hard-code min/max permitted values
         minAllowed = 50;
         maxAllowed = 450;
+
+        // Set defaults for values passed to other activities
+        listMin = 0;
+        listMax = 0;
+        listMean = 0;
 
         // Set default text values to min/max allowed
         minEditText.setText(minAllowed.toString());
@@ -49,10 +55,37 @@ public class MainActivity extends AppCompatActivity {
         maxEditText.addTextChangedListener(editTextWatcher);
     }
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            // TextDisplay
+            Integer selected = intent.getIntExtra("edu.jcu.plandoll16.Homework6.selected", -1);
+            Toast.makeText(this, selected.toString(), Toast.LENGTH_LONG).show();
+        } else if (requestCode == 101 && resultCode == RESULT_OK) {
+            // GraphicalDisplay
+        }
+    }
+
     public void textDisplayButtonClick(View view) {
         Intent textDisplayIntent = new Intent(view.getContext(), TextDisplayActivity.class);
-        textDisplayIntent.putExtra("edu.jcu.plandoll16.SizeArray.option", numberArrayList);
+        textDisplayIntent.putIntegerArrayListExtra("edu.jcu.plandoll16.Homework6.numberArrayList", numberArrayList);
+        textDisplayIntent.putExtra("edu.jcu.plandoll16.Homework6.listMean", listMean);
+        textDisplayIntent.putExtra("edu.jcu.plandoll16.Homework6.listMax", listMax);
+        textDisplayIntent.putExtra("edu.jcu.plandoll16.Homework6.listMin", listMin);
         startActivityForResult(textDisplayIntent, 100);
+    }
+
+    private void calculateValues() {
+        int sum = 0;
+        int n = 0;
+        listMax = numberArrayList.get(0);
+        listMin = numberArrayList.get(0);
+        for (int i = 0; i < 6; i++) {
+            n = numberArrayList.get(0);
+            listMax = Math.max(listMax, n);
+            listMin = Math.min(listMin, n);
+            sum += n;
+        }
+        listMean = sum / 6;
     }
 
     public void generateNumbers(View view) {
