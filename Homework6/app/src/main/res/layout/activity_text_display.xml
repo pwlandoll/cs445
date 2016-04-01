@@ -9,12 +9,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.jcu.plandoll16.homework6.TextDisplayActivity">
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textDisplayListView" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/minimum"
         android:id="@+id/minTextView"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/textDisplayListView"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -41,4 +46,5 @@
         android:layout_below="@+id/meanTextView"
         android:layout_alignParentStart="true"
         android:onClick="returnButtonOnClick" />
+
 </RelativeLayout>

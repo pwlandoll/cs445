@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<Integer> listAdapter;
     private ArrayList<Integer> numberArrayList;
     private EditText minEditText, maxEditText;
-    private Integer min, max, minAllowed, maxAllowed, minText, maxText, listMin, listMax, listMean;
+    private Integer min, max, minAllowed, maxAllowed, minText, maxText;
     private ListView numberListView;
 
     @Override
@@ -34,11 +34,6 @@ public class MainActivity extends AppCompatActivity {
         // Hard-code min/max permitted values
         minAllowed = 50;
         maxAllowed = 450;
-
-        // Set defaults for values passed to other activities
-        listMin = 0;
-        listMax = 0;
-        listMean = 0;
 
         // Set default text values to min/max allowed
         minEditText.setText(minAllowed.toString());
@@ -56,36 +51,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        Integer selected = -1;
         if (requestCode == 100 && resultCode == RESULT_OK) {
             // TextDisplay
-            Integer selected = intent.getIntExtra("edu.jcu.plandoll16.Homework6.selected", -1);
-            Toast.makeText(this, selected.toString(), Toast.LENGTH_LONG).show();
+            selected = intent.getIntExtra("edu.jcu.plandoll16.Homework6.selected", -1);
+            if (selected >= 0) {
+                Toast.makeText(this, selected.toString(), Toast.LENGTH_LONG).show();
+                // Can't actually seem to select it from the ListView
+            }
         } else if (requestCode == 101 && resultCode == RESULT_OK) {
             // GraphicalDisplay
+            selected = intent.getIntExtra("edu.jcu.plandoll16.Homework6.selected", -1);
+            if (selected >= 0) {
+                Toast.makeText(this, selected.toString(), Toast.LENGTH_LONG).show();
+            }
+        } else if (resultCode == RESULT_CANCELED) {
+            //selected is -1
         }
     }
 
     public void textDisplayButtonClick(View view) {
         Intent textDisplayIntent = new Intent(view.getContext(), TextDisplayActivity.class);
         textDisplayIntent.putIntegerArrayListExtra("edu.jcu.plandoll16.Homework6.numberArrayList", numberArrayList);
-        textDisplayIntent.putExtra("edu.jcu.plandoll16.Homework6.listMean", listMean);
-        textDisplayIntent.putExtra("edu.jcu.plandoll16.Homework6.listMax", listMax);
-        textDisplayIntent.putExtra("edu.jcu.plandoll16.Homework6.listMin", listMin);
         startActivityForResult(textDisplayIntent, 100);
     }
 
-    private void calculateValues() {
-        int sum = 0;
-        int n = 0;
-        listMax = numberArrayList.get(0);
-        listMin = numberArrayList.get(0);
-        for (int i = 0; i < 6; i++) {
-            n = numberArrayList.get(0);
-            listMax = Math.max(listMax, n);
-            listMin = Math.min(listMin, n);
-            sum += n;
-        }
-        listMean = sum / 6;
+    public void graphicDisplayButtonClick(View view) {
+        Intent graphicDisplayIntent = new Intent(view.getContext(), GraphicalDisplayActivity.class);
+        graphicDisplayIntent.putIntegerArrayListExtra("edu.jcu.plandoll16.Homework6.numberArrayList", numberArrayList);
+        startActivityForResult(graphicDisplayIntent, 101);
     }
 
     public void generateNumbers(View view) {
