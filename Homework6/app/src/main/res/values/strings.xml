@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Homework6</string>
+    <string name="generate">Generate Numbers</string>
+    <string name="textDisplay">Text Display of Numbers</string>
+    <string name="graphicDisplay">Graphic Display of Numbers</string>
+    <string name="returnButton">Return</string>
+    <string name="minimum">Minimum</string>
+    <string name="maximum">Maximum</string>
+    <string name="mean">Mean</string>
+
+</resources>
