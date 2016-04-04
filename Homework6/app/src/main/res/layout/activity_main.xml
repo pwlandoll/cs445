@@ -81,7 +81,8 @@
         android:text="@string/graphicDisplay"
         android:id="@+id/graphicDisplayButton"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/space3"/>
+        android:layout_below="@+id/space3"
+        android:onClick="graphicDisplayButtonClick" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -95,7 +96,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/numberListView"
             android:layout_gravity="center_horizontal"
-            android:choiceMode="singleChoice"/>
+            android:choiceMode="singleChoice"
+            android:listSelector="@color/magenta"/>
 
     </LinearLayout>
 </RelativeLayout>
