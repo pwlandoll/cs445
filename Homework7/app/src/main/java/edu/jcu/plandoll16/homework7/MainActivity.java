@@ -39,11 +39,11 @@ public class MainActivity extends AppCompatActivity {
     public void beginButtonClick(View view) {
         int selected = difficultyRadioGroup.getCheckedRadioButtonId();
         if (selected == R.id.easyRadioButton) {
-            difficulty = 0;
+            difficulty = 3;
         } else if (selected == R.id.mediumRadioButton) {
-            difficulty = 1;
-        } else if (selected == R.id.hardRadioButton) {
             difficulty = 2;
+        } else if (selected == R.id.hardRadioButton) {
+            difficulty = 1;
         }
         if (difficulty != -1) {
             Intent mIntent = new Intent(view.getContext(), FlashCardActivity.class);

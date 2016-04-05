@@ -15,13 +15,84 @@
         android:text="@string/start"
         android:id="@+id/startButton"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="startButtonClick" />
 
-    <TableRow
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/startButton"></TableRow>
+        android:layout_toStartOf="@+id/startButton">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/problem1Layout"
+            android:visibility="invisible">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/problem1TextView"
+                android:layout_weight="1" />
+
+            <EditText
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/problem1EditText"
+                android:layout_gravity="right" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/problem2Layout"
+            android:visibility="invisible">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/problem2TextView"
+                android:layout_weight="1" />
+
+            <EditText
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/problem2EditText"
+                android:layout_gravity="right" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/problem3Layout"
+            android:visibility="invisible">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/problem3TextView"
+                android:layout_weight="1" />
+
+            <EditText
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/problem3EditText"
+                android:layout_gravity="right" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
