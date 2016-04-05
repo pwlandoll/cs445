@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Homework 7</string>
+    <string name="choose">Choose the Level of Difficulty</string>
+    <string name="begin">Begin Flash Cards</string>
+    <string name="start">Start/Next</string>
+    <string name="percent">Percent Correct</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+</resources>
