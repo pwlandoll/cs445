@@ -1,5 +1,7 @@
 package edu.jcu.plandoll16.homework7;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,17 +43,20 @@ public class FlashCardActivity extends AppCompatActivity {
         problemTextViews[1] = (TextView)findViewById(R.id.problem2TextView);
         problemTextViews[2] = (TextView)findViewById(R.id.problem3TextView);
 
+        // Calculate the problems ahead of time, and only set the layouts to visible later
         Random r = new Random();
         Integer a, b;
+        String problem;
         answers = new Integer[3];
         for (int i = 0; i < 3; i++) {
             a = r.nextInt(10);
             b = r.nextInt(10);
             answers[i] = a * b;
-            problemTextViews[i].setText(a.toString() + " * " + b.toString() + ": ");
-
+            problem = a.toString() + " * " + b.toString() + ": ";
+            problemTextViews[i].setText(problem);
         }
 
+        // Get the difficulty, and calculate the time between each problem
         Intent mIntent = this.getIntent();
         Bundle mBundle = mIntent.getExtras();
         int difficulty = mBundle.getInt("edu.jcu.plandoll16.Homework7.difficulty");
@@ -64,6 +69,14 @@ public class FlashCardActivity extends AppCompatActivity {
         this.getIntent().putExtra("edu.jcu.plandoll16.Homework7.correct", score);
         setResult(RESULT_OK, this.getIntent());
         finish();
+    }
+
+    // This class listens for Broadcast that says Alarm happened
+    public class TimerBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            
+        }
     }
 
 }

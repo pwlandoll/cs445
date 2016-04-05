@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                 // Defaults to -3 so that the score displays as -1
                 float correct = intent.getIntExtra("edu.jcu.plandoll16.Homework7.correct", -3) / 3;
-                percentTextView.setText(getResources().getString(R.string.percent) + ": " + correct);
+                String percent = getResources().getString(R.string.percent) + ": " + correct;
+                percentTextView.setText(percent);
             } catch (Exception ex) {
                 Toast.makeText(this, "There was an error fetching the score", Toast.LENGTH_LONG).show();
             }
