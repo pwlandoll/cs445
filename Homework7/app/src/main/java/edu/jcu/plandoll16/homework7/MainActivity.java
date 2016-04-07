@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         difficultyRadioGroup = (RadioGroup)findViewById(R.id.difficultyRadioGroup);
         percentTextView = (TextView)findViewById(R.id.percentTextView);
 
+        difficultyRadioGroup.check(R.id.easyRadioButton);
+
         difficulty = -1;
     }
 

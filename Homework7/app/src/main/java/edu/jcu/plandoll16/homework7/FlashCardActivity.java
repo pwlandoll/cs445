@@ -17,6 +17,7 @@ import java.util.Random;
 public class FlashCardActivity extends AppCompatActivity {
     private EditText[] problemEditTexts;
     private double time;
+    private int counter;
     private Integer[] answers;
     private LinearLayout[] problemLayouts;
     private TextView[] problemTextViews;
@@ -55,6 +56,9 @@ public class FlashCardActivity extends AppCompatActivity {
             problem = a.toString() + " * " + b.toString() + ": ";
             problemTextViews[i].setText(problem);
         }
+
+        // Used to keep track of the current problem
+        counter = 0;
 
         // Get the difficulty, and calculate the time between each problem
         Intent mIntent = this.getIntent();
