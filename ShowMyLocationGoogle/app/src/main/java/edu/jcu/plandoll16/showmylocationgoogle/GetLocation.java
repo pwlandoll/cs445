@@ -29,6 +29,7 @@ public class GetLocation implements
      * This code is returned in Activity.onActivityResult
      */
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
+    private final static String TAG = GetLocation.class.getSimpleName();
 
     private LocationCallback mLocationCallback;
     private Context mContext;
@@ -66,6 +67,7 @@ public class GetLocation implements
 
     @Override
     public void onConnected(Bundle bundle) {
+        Log.i(TAG, "Location Services Connected");
         try {
             Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
             if (location == null) {
