@@ -20,6 +20,23 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Create the BroadcastReceiver
+    }
+
+    public void onClick(View view) {
+        // Step 1: Create a DownloadManager
+        dm = (DownloadManager)getSystemService(DOWNLOAD_SERVICE);
+        // Step 2: Create a request
+        DownloadManager.Request request = new DownloadManager.Request(
+                Uri.parse("http://stuweb08.jcu.edu/kirsch/motorcycle.jpg"));
+        enqueue = dm.enqueue(request);
+    }
+
+    public void showDownload(View view) {
+        Intent mIntent = new Intent();
+        mIntent.setAction(DownloadManager.ACTION_VIEW_DOWNLOADS);
+        startActivity(mIntent);
     }
 }
 

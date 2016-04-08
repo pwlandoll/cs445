@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Quiz 6</string>
+    <string name="Prompt">Enter a Number between 200 and 800</string>
+    <string name="hint">[200,800]</string>
+    <string name="error">You must input a Number between 200 and 800</string>
+    <string name="defaultmin">200</string>
+    <string name="defaultmax">800</string>
+    <string name="button_text">Go</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="unknown">UNKNOWN</string>
+</resources>
