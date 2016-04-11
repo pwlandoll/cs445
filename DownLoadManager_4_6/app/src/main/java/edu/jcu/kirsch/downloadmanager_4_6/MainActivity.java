@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+
 public class MainActivity extends AppCompatActivity {
     private long enqueue;
     private DownloadManager dm;
@@ -22,6 +23,31 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Create the BroadcastReceiver
+        BroadcastReceiver receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                // Find out what the DownloadManager did, and respond accordingly
+                String action = intent.getAction();
+                // Make sure this was from a Download complete, if so, it's our request
+                if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(action)) {
+                    DownloadManager.Query query = new DownloadManager.Query();
+                    // Do the query, put the results in a Cursor
+                    Cursor cursor = dm.query(query);
+                    if (cursor.moveToFirst()) {
+                        // There is data
+                        int columnIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
+                        if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(columnIndex)) {
+                            // Get the data
+                            ImageView view = (ImageView)findViewById(R.id.motorcycleImageView);
+                            String uriString = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
+                            view.setImageURI(Uri.parse(uriString));
+                        }
+                    }
+                }
+            }
+        };
+        // Register the BroadcastReceiver
+        registerReceiver(receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
     }
 
     public void onClick(View view) {
