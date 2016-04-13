@@ -37,7 +37,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/problem1TextView"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textIsSelectable="false"
+                android:textSize="@dimen/abc_text_size_large_material" />
 
             <EditText
                 android:layout_width="55dp"
@@ -60,7 +62,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/problem2TextView"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textSize="@dimen/abc_text_size_large_material" />
 
             <EditText
                 android:layout_width="55dp"
@@ -82,7 +85,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/problem3TextView"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textSize="@dimen/abc_text_size_large_material" />
 
             <EditText
                 android:layout_width="55dp"

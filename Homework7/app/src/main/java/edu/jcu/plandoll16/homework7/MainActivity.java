@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 0 && resultCode == RESULT_OK) {
             try {
                 // Defaults to -3 so that the score displays as -1
-                float correct = intent.getIntExtra("edu.jcu.plandoll16.Homework7.correct", -3) / 3;
+                double correct = intent.getIntExtra("edu.jcu.plandoll16.Homework7.correct", -3) / 3.0;
                 String percent = getResources().getString(R.string.percent) + ": " + correct;
                 percentTextView.setText(percent);
             } catch (Exception ex) {

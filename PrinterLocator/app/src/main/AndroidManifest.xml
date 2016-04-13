@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.jcu.plandoll16.homework7">
+    package="edu.jcu.plandoll16.printerlocator">
 
     <application
         android:allowBackup="true"
@@ -15,8 +15,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FlashCardActivity"></activity>
-        <receiver android:name=".FlashCardActivity$TimerBroadcastReceiver" android:enabled="true" />
     </application>
 
 </manifest>
