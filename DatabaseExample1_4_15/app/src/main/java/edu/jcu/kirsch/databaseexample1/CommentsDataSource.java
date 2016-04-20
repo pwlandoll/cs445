@@ -1,11 +1,13 @@
 package edu.jcu.kirsch.databaseexample1;
 
+import android.app.TaskStackBuilder;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,7 +50,16 @@ public class CommentsDataSource {
     }
 
     public List<OneComment> getAllComments(){
-
+        List<OneComment> comments = new ArrayList<OneComment>();
+        Cursor cursor = database.query(MySQLiteHelper.TABLE_NAME, allColumns, null, null, null, null, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            OneComment comment = cursorToComment(cursor);
+            comments.add(comment);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return comments;
     }
 
     private OneComment cursorToComment(Cursor cursor){

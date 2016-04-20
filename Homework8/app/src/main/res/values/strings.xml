@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Homework 8</string>
+    <string name="lon">Destination Longitude: </string>
+    <string name="lat">Destination Latitude: </string>
+    <string name="start">Start Navigation</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
