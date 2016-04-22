@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -35,10 +37,29 @@ public class MainActivity extends AppCompatActivity {
         switch(view.getId())
         {
             case R.id.addButton:
-
+                String[] text = {"Nice", "Most Excellent", "It's good"};
+                position = new Random().nextInt(3);
+                comment = datasource.createComment(text[position]);
+                adapter.add(comment);
                 break;
             case R.id.delete:
+                if (adapter.getCount() > 0){
+                    try {
+                        position = Integer.parseInt(index.getText().toString());
+                        if (position >= 0 && position < adapter.getCount()) {
+                            // Valid position in list
+                            comment = (OneComment)adapter.getItem(position);
+                            datasource.deleteComment(comment);
+                            adapter.remove(comment);
+                        } else {
+                            Toast.makeText(getBaseContext(), "No such position on the list", Toast.LENGTH_LONG).show();
+                        }
+                    } catch (Exception ex) {
+                        Toast.makeText(getBaseContext(), "Illegal Input: " + ex.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                } else {
 
+                }
                 break;
             }
 
