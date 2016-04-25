@@ -17,14 +17,12 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GetLocation.LocationCallback {
     private double firstDistance, lat, lon;
+    private GetLocation mLocationProvider;
     private GoogleMap mMap;
     private final int AMOUNT = 15;
-    private final int REFRESH = 10000;
     private LatLng fixedLocation;
-    private LocationManager mLocationManager;
-    private String provider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +33,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        mLocationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
+        mLocationProvider = new GetLocation(getBaseContext(), this);
     }
 
     @Override
@@ -58,7 +55,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void onLocationChanged(Location location) {
+    public void handleNewLocation(Location location) {
         double userLat = location.getLatitude();
         double userLon = location.getLongitude();
         LatLng userLocation = new LatLng(userLat, userLon);
@@ -82,5 +79,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .icon(BitmapDescriptorFactory.defaultMarker(color)));
 
         mMap.animateCamera(CameraUpdateFactory.zoomTo(AMOUNT));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mLocationProvider.connect();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mLocationProvider.disconnect();
     }
 }
