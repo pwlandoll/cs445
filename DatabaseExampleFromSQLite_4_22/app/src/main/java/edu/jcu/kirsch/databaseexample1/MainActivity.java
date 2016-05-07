@@ -29,18 +29,20 @@ public class MainActivity extends AppCompatActivity {
         //Copy database from the assets folder to internal storage.
         String dir = "/data/data/" + getPackageName() + "/databases/";
         String path = dir + "blogger.db";
-        File newFile = new File(path);
-        if (!newFile.exists()) {
-            File directory = new File(path);
+        File newFile = new File(dir);
+        //if (!newFile.exists()) {
+            File directory = new File(dir);
             directory.mkdirs();
-            try {
+            try
+            {
                 copyDB(getBaseContext().getAssets().open("blogger.db"), new FileOutputStream(path));
+
             } catch (IOException ex) {
                 Toast.makeText(getBaseContext(), "Can't copy blogger.db", Toast.LENGTH_LONG).show();
             }
-        } else {
-            Toast.makeText(getApplicationContext(), "blogger exists", Toast.LENGTH_LONG).show();
-        }
+        //} else {
+           // Toast.makeText(getApplicationContext(), "blogger exists", Toast.LENGTH_LONG).show();
+        //}
         datasource = new RecordsDataSource(this);
         datasource.open();
         recordsList = (ListView) findViewById(R.id.recordsListView);
